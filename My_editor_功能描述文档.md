@@ -4,6 +4,8 @@
 
 **如果使用 `macos` 要注意，先下载 `gnu-sed` ，把代码里的 `sed` 换成 `gsed` **
 
+**如果使用 `Linux` ，则把 `gsed` 换回 `sed`** 
+
 下载文件，文件夹里有：
 
 -function.sh
@@ -11,6 +13,10 @@
 -myed.sh
 
 -Makefile
+
+-My_editor_功能描述文档.md
+
+-My_editor_设计文档.md
 
 #### 2. Setting & Start:
 
@@ -36,43 +42,82 @@ myed 1.txt
 
 例子：
 
-![image-20220814183410189](/Users/gakiara/Library/Application Support/typora-user-images/image-20220814183410189.png)
+刚进入的时候，默认输出一次文件内容：
 
-可以输入`Ctrl+c`强制结束：
+![image-20220814193558110](images/image-20220814193558110.png)
+
+使用过程中可以输入`Ctrl+c`强制结束：
 
 #### 3. Usage:
 
 进入了myed的界面后：
 
+- **帮助**
+
+  `h`  :  输出usage
+
 - **打印选项：**
 
-  `p [#line number]`  -》打印某一行
+  `p`  :  打印整个文件
 
-  `p`  -》打印整个文件
+  `p [#line number]`  :  打印某一行
+
+  ![image-20220814205147796](images/image-20220814205147796.png)
 
 - **行操作：**
 
-  `a [#LINE]`: insert line(s) after #LINE
+  `a` ：在文档最后面增加内容
 
-选项：
+  `a [#line number]` ：在某一行后面增加内容
 
-- `! [COMMAND]`: run shell COMMAND in the myed
+  exp：输入`a 0`，在第一行输入`start`
 
-- `/ [PATTERN]`: search for PATTERN in the file
-- 
-- `a`: appends to the end of the file
-- `c [#LINE]`: change #LINE
-- `d [#LINE]`: delete #LINE
-- `e [FILE]`: close the current file (without saving) and opens FILE
-- `q`: quits
-- `u`: undo last change
-- `w`: save
-- `wq`: save and quit
+  ![image-20220814205845847](images/image-20220814205845847.png)
 
-### Editing
+  `r [#line number]` ：替换某一行内容为你输入的
 
-For the commands that require text input:
+  exp: 
 
-1. Write as you would normally do, presing enter for a new line.
-2. After the last line is written, press enter again.
-3. Press `Ctrl+D` to finish the text input.
+  输入`r 1`，将start 替换成 replace 
+
+  ![image-20220814213354629](images/image-20220814213354629.png)
+
+  `d [[#line number]`：删除某一行
+
+  exp：
+
+  输入`d 2`：删除掉第二行![image-20220814213526371](images/image-20220814213526371.png)
+
+  
+
+  - 行输入的时候，换行输入`enter`
+  - 写完最后一行后，再输入`enter` 和 `ctrl+c` 来完成文本的输入
+  - 输入0为第一行，-1为最后一行
+
+- **文件操作：**
+
+  `u` ：撤回上一步操作
+
+  exp：退回到没有删除之前
+
+  ![image-20220814213644917](images/image-20220814213644917.png)
+
+  `e [#new file name]` ：关闭当前文件，打开新的文件
+
+  exp：输入e 2.txt切换到2.txt文本 
+
+  ![image-20220814213735244](images/image-20220814213735244.png)
+
+  `q` ：退出不保存
+
+  退出前会有一个确认是否不保存修改的文件退出以防出错：
+
+  `w` ：保存文件
+
+  `wq` ：保存并退出
+
+- **命令行：**
+
+  `! [COMMAND]` ：在myed中运行控制行的命令
+
+![image-20220814213844800](images/image-20220814213844800.png)
