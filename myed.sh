@@ -32,10 +32,14 @@ new_create=0
 
 cat "$original_file" > "$working_file"
 
+#检测退出指令，删除working——file
 trap 'rm -f "$working_file"' EXIT
 
 printf '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Welcome to my text editor<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< \n'
 printf '>> enter h for usage <<\n'
 
+#调用显示文件函数
 _print_lines
+
+#调用主函数
 _main
